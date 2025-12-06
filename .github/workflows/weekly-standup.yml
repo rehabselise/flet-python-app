@@ -19,9 +19,9 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const issue_number = 76; // <-- Team 8 Weekly Standup
+            const issue_number = 76;
             const body = `
-Weekly standup time! 🚀  
+Weekly standup time! 🚀
 
 Please reply to this comment with your update using this structure:
 
