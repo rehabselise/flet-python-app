@@ -2,12 +2,11 @@ name: Weekly Standup Reminder
 
 on:
   schedule:
-    # Every Monday at 08:00 UTC – adjust as needed
     - cron: "0 8 * * MON"
-  workflow_dispatch: {}  # allow manual trigger
+  workflow_dispatch: {}
 
 permissions:
-  issues: write   # needed to post comments
+  issues: write
   contents: read
 
 jobs:
@@ -20,20 +19,11 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
             const issue_number = 76;
-            const body = `
-Weekly standup time! 🚀
-
-Please reply to this comment with your update using this structure:
-
-- **Yesterday / Last week**: …
-- **Today / This week**: …
-- **Blocked by**: …
-
-@team-8 please add your updates below.`;
-
+            const body = 'Weekly standup time! 🚀\n\nPlease reply to this comment with your update using this structure:\n\n- **Yesterday / Last week**: What was completed\n- **Today / This week**: What will be done\n- **Blocked by**: Any blockers or issues\n\n@team-8 please add your updates below.';
+            
             await github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number,
-              body,
+              body
             });
